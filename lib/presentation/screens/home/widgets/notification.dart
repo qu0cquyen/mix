@@ -16,12 +16,12 @@ class NotificationButton extends StatelessWidget {
         margin: EdgeInsets.all(AppInsets.xs),
         padding: EdgeInsets.all(AppInsets.sm),
         decoration: BoxDecoration(
-          color: AppColors.secondaryColor.shade100,
-          border: Border.all(color: AppColors.primaryColor.shade100),
+          color: AppColors.backgroundColor.shade50,
+          border: Border.all(color: AppColors.primaryColor.shade50),
           shape: BoxShape.circle,
           boxShadow: <BoxShadow>[
             BoxShadow(
-              color: AppColors.secondaryColor,
+              color: AppColors.primaryColor.shade50,
               offset: const Offset(0.5, 3.0),
               blurRadius: 5.0,
             ),

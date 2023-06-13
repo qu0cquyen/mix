@@ -9,7 +9,12 @@ class UpComing extends StatelessWidget {
     return Card(
       elevation: 5.0,
       surfaceTintColor: Colors.white,
-      shape: const RoundedRectangleBorder(borderRadius: AppCorners.lgBorder),
+      shape: RoundedRectangleBorder(
+        borderRadius: AppCorners.lgBorder,
+        side: BorderSide(
+          color: AppColors.primaryColor.shade50,
+        ),
+      ),
       margin: EdgeInsets.symmetric(vertical: AppInsets.lg),
       child: Padding(
         padding: EdgeInsets.all(AppInsets.lg),

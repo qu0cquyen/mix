@@ -14,7 +14,7 @@ class AppTheme extends Equatable {
           splashColor: Colors.transparent,
           splashFactory: NoSplash.splashFactory,
           highlightColor: Colors.transparent,
-          scaffoldBackgroundColor: AppColors.secondaryColor.shade100,
+          scaffoldBackgroundColor: AppColors.backgroundColor.shade50,
           fontFamily: 'Montserrat',
           buttonTheme: ButtonThemeData(
             shape: RoundedRectangleBorder(

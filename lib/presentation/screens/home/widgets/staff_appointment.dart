@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router_plus/go_router_plus.dart';
-import 'package:mix/presentation/screens/home/widgets/appointment_item.dart';
+import 'package:mix/presentation/screens/home/widgets/widgets.dart';
 import 'package:mix/styles/styles.dart';
 
 class StaffAppointment extends StatefulWidget {
@@ -17,7 +17,7 @@ class _StaffAppointmentState extends State<StaffAppointment>
   @override
   void initState() {
     super.initState();
-    tabController = TabController(vsync: this, length: 7);
+    tabController = TabController(vsync: this, length: 8);
   }
 
   @override
@@ -47,6 +47,7 @@ class _StaffAppointmentState extends State<StaffAppointment>
                 padding: EdgeInsets.all(AppInsets.lg),
                 isScrollable: true,
                 tabs: const [
+                  Text('View All'),
                   Text('Staff 1'),
                   Text('Staff 2'),
                   Text('Staff 3'),
@@ -60,6 +61,15 @@ class _StaffAppointmentState extends State<StaffAppointment>
             AspectRatio(
               aspectRatio: MediaQuery.of(context).devicePixelRatio / 2.5,
               child: TabBarView(controller: tabController, children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppInsets.md),
+                  child: AppointmentItem(
+                    name: 'Adam Levi',
+                    serviceName: 'Theraphy',
+                    startTime: DateTime.now(),
+                    endTime: DateTime.now().add(const Duration(minutes: 30)),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: AppInsets.md),
                   child: Column(

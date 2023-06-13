@@ -47,7 +47,7 @@ class AppointmentItem extends StatelessWidget {
                 padding: EdgeInsets.only(left: AppInsets.sm),
                 child: Column(
                   children: [
-                    Divider(color: AppColors.secondaryColor.shade200),
+                    Divider(color: AppColors.primaryColor.shade50),
                     Row(
                       children: [
                         Expanded(
@@ -59,7 +59,7 @@ class AppointmentItem extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: AppCorners.lgBorder,
                                 side: BorderSide(
-                                  color: AppColors.secondaryColor.shade300,
+                                  color: AppColors.primaryColor.shade50,
                                 ),
                               ),
                               elevation: 5.0,
@@ -151,7 +151,7 @@ class AppointmentItem extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: AppInsets.sm),
                 child: Divider(
-                  color: AppColors.secondaryColor.shade200,
+                  color: AppColors.primaryColor.shade50,
                 ),
               ),
             ),

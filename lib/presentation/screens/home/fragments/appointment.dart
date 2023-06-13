@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:mix/presentation/screens/home/states/selected_date_provider.dart';
-import 'package:mix/presentation/screens/home/widgets/calendar_horizontal_picker.dart';
-import 'package:mix/presentation/screens/home/widgets/staff_appointment.dart';
+import 'package:mix/presentation/screens/home/widgets/widgets.dart';
 import 'package:mix/styles/styles.dart';
 
 class AppointmentScreen extends ConsumerWidget {
@@ -68,7 +67,7 @@ class AppointmentScreen extends ConsumerWidget {
                       borderRadius: AppCorners.lgBorder,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.secondaryColor,
+                          color: AppColors.primaryColor.shade50,
                           offset: const Offset(2, 2),
                           blurRadius: 5.0,
                         )

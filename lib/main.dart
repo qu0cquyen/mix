@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_robusta/flutter_robusta.dart';
 import 'package:mix/robusta/app.dart';
 import 'package:mix/robusta/boot.dart';
+import 'package:mix/robusta/firebase.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,6 +10,7 @@ Future<void> main() async {
   final runner = Runner(
     defineBoot: defineBoot,
     extensions: [
+      firebaseCoreExtension(),
       appExtension(),
     ],
   );

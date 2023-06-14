@@ -24,12 +24,18 @@ class UpComing extends StatelessWidget {
             const Text('Up coming:'),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  'Adam Levi',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                SizedBox(
+                  width: AppTypography.fontSizeHeadline1 * 2.5,
+                  child: Text(
+                    'Adam Levi ',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
                 ),
                 Row(
                   children: [

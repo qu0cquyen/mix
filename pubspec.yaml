@@ -21,6 +21,8 @@ dependencies:
   fl_chart: ^0.62.0
   intl: ^0.18.1
   scrollable_positioned_list: ^0.3.8
+  robusta_firebase_core:
+    path: ../../FastBoy_Project/robusta/packages/robusta_firebase_core
 
 dev_dependencies:
   flutter_test:

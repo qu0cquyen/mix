@@ -1,6 +1,6 @@
 export 'appointment_detail_current.dart';
 export 'appointment_detail_customer_info_sub_header.dart';
-export 'appointment_detail_header.dart';
+export 'appointment_detail_content.dart';
 export 'appointment_detail_history.dart';
 export 'appointment_detail_history_item.dart';
 export 'appointment_item.dart';

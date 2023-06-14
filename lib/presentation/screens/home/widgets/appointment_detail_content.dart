@@ -3,31 +3,40 @@ import 'package:go_router_plus/go_router_plus.dart';
 import 'package:mix/presentation/screens/home/widgets/widgets.dart';
 import 'package:mix/styles/styles.dart';
 
-class AppoinmentDetailHeader extends StatefulWidget {
-  const AppoinmentDetailHeader({
+class AppoinmentDetaiContent extends StatefulWidget {
+  const AppoinmentDetaiContent({
     super.key,
   });
 
   @override
-  State<AppoinmentDetailHeader> createState() => _AppoinmentDetailHeaderState();
+  State<AppoinmentDetaiContent> createState() => _AppoinmentDetaiContentState();
 }
 
-class _AppoinmentDetailHeaderState extends State<AppoinmentDetailHeader>
+class _AppoinmentDetaiContentState extends State<AppoinmentDetaiContent>
     with SingleTickerProviderStateMixin {
   late final TabController tabController;
+  late final ScrollController scrollController;
 
   final double maxExtend = 210;
-  final double minExtend = 50;
+  final double minExtend = 60;
 
   @override
   void initState() {
     super.initState();
     tabController = TabController(vsync: this, length: 2);
+    scrollController = ScrollController();
+
+    scrollController.addListener(() {
+      if (tabController.index == 0) {
+        scrollController.jumpTo(0);
+      }
+    });
   }
 
   @override
   void dispose() {
     tabController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -36,6 +45,7 @@ class _AppoinmentDetailHeaderState extends State<AppoinmentDetailHeader>
     return Scaffold(
       body: SafeArea(
         child: NestedScrollView(
+          controller: scrollController,
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverPersistentHeader(
               pinned: true,
@@ -47,12 +57,8 @@ class _AppoinmentDetailHeaderState extends State<AppoinmentDetailHeader>
             ),
           ],
           body: DecoratedBox(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: AppCorners.lgRadius * 2,
-                topRight: AppCorners.lgRadius * 2,
-              ),
             ),
             child: Padding(
               padding: EdgeInsets.only(top: AppInsets.lg),
@@ -94,7 +100,7 @@ class _AppointmentPersistentHeaderDelegate
       children: [
         AnimatedOpacity(
           opacity: 1 - (shrinkOffset / maxExtent),
-          duration: const Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 100),
           child: LayoutBuilder(builder: (context, constraints) {
             return SizedBox(
               height: constraints.maxHeight,
@@ -145,12 +151,16 @@ class _AppointmentPersistentHeaderDelegate
           visible: shrinkOffset > 0,
           child: AnimatedOpacity(
             opacity: shrinkOffset / maxExtent,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 100),
             child: SizedBox(
               height: minExtent,
               child: AppBar(
                 elevation: 5,
                 surfaceTintColor: Colors.white,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back_ios),
+                  onPressed: () => context.pop(),
+                ),
                 backgroundColor: AppColors.backgroundColor.shade50,
                 title: Text(
                   'Adam Levi',

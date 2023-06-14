@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router_plus/go_router_plus.dart';
+import 'package:mix/presentation/screens/comming_soon/widgets/comming_soon_widget.dart';
 import 'package:mix/presentation/screens/home/fragments/appointment.dart';
 import 'package:mix/presentation/screens/home/fragments/dash_board.dart';
+import 'package:mix/presentation/screens/home/states/bottom_provider.dart';
 import 'package:mix/presentation/screens/home/states/page_controller_provider.dart';
 import 'package:mix/styles/styles.dart';
 
@@ -18,9 +20,15 @@ class HomeScreen extends Screen implements InitialScreen {
         body: SafeArea(
           child: PageView(
             controller: _pageController,
+            onPageChanged: (index) {
+              ref.read(currentSelectionBottomNavigatorProvider.notifier).state =
+                  index;
+            },
             children: const [
               DashboardScreen(),
               AppointmentScreen(),
+              CommingSoonWidget(),
+              CommingSoonWidget(),
             ],
           ),
         ),

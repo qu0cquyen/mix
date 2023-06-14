@@ -38,9 +38,14 @@ class _SmallPhoneWidget extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppInsets.md),
-            child: Text(
-              'Oliver Queen',
-              style: Theme.of(context).textTheme.displayLarge,
+            child: SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              child: Text(
+                'Oliver Queen',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
             ),
           ),
           Padding(

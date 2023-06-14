@@ -7,6 +7,7 @@ class AppointmentDetailCurrent extends StatelessWidget {
     required this.duration,
     this.notes,
     this.onDeletePressed,
+    this.onCompeletePressed,
     super.key,
   });
 
@@ -14,6 +15,7 @@ class AppointmentDetailCurrent extends StatelessWidget {
   final int duration;
   final String? notes;
   final VoidCallback? onDeletePressed;
+  final VoidCallback? onCompeletePressed;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class AppointmentDetailCurrent extends StatelessWidget {
               ),
               backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
             ),
-            onPressed: () {},
+            onPressed: onCompeletePressed,
             child: Text(
               'Completed',
               style: Theme.of(context).textTheme.displaySmall!.copyWith(

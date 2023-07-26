@@ -22,6 +22,11 @@ class AppTheme extends Equatable {
             ),
             buttonColor: AppColors.primaryColor,
           ),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: AppColors.primaryColor,
+            selectionColor: AppColors.primaryColor.shade50,
+            selectionHandleColor: AppColors.primaryColor,
+          ),
           textTheme: TextTheme(
             headlineLarge: AppTypography.headline1,
             headlineMedium: AppTypography.headline2,

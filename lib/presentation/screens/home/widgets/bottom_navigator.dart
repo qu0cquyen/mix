@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mix/presentation/screens/home/states/bottom_provider.dart';
+import 'package:mix/presentation/states/home/bottom_provider.dart';
 import 'package:mix/styles/styles.dart';
 
 class BottomNavigator extends ConsumerWidget {

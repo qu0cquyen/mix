@@ -1,0 +1,29 @@
+name: Build Express Image
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version: [19.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{matrix.node-version}}
+
+      - run: |
+          npm install
+          npm test
+        working-directory: ./api

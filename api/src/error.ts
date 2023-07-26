@@ -1,4 +1,3 @@
-
 /* Operational Error:
    Represent runtime problems whose results are expected and should be dealt
    with in a proper way. Operational errors don't mean the application itself has bugs
@@ -6,57 +5,76 @@
    include "out of memory", "an invalid input for an API endpoint", and so on..
 */
 
-class BaseError extends Error{
-    public readonly name: string; 
-    public readonly httpCode: HttpStatusCode; 
-    public readonly isOperational: boolean; 
+import { NextFunction, Response } from 'express';
 
-    constructor(name: string, httpCode: HttpStatusCode, description: string, isOperational: boolean){
-        super(description); 
-        Object.setPrototypeOf(this, new.target.prototype); 
+class BaseError extends Error {
+  public readonly name: string;
+  public readonly httpCode: HttpStatusCode;
+  public readonly isOperational: boolean;
 
-        this.name = name; 
-        this.httpCode = httpCode; 
-        this.isOperational = isOperational; 
+  constructor(name: string, httpCode: HttpStatusCode, description: string, isOperational: boolean) {
+    super(description);
+    Object.setPrototypeOf(this, new.target.prototype);
 
-        Error.captureStackTrace(this); 
-    }
+    this.name = name;
+    this.httpCode = httpCode;
+    this.isOperational = isOperational;
+
+    Error.captureStackTrace(this);
+  }
 }
 
-class APIError extends BaseError{
-    constructor(name: string, httpCode = HttpStatusCode.INTERNAL_SERVER, isOperational = true, description = 'Internal Server Error'){
-        super(name, httpCode,  description, isOperational); 
-    }
+export class APIError extends BaseError {
+  constructor(
+    name: string,
+    httpCode = HttpStatusCode.INTERNAL_SERVER,
+    isOperational = true,
+    description = 'Internal Server Error'
+  ) {
+    super(name, httpCode, description, isOperational);
+  }
 }
 
 class ErrorHandler {
-    public async handleError(err: Error): Promise<void> {
-        console.log(err); 
-        // Log error
-
-        // Send error to admin 
-        // await sendMailToAdminIfCritical()
-        // Send error to Entry
-        // await sendEventsToEntry()
+  public async handleError(err: Error | APIError, response?: Response, next?: NextFunction): Promise<void> {
+    if (process.env.NODE_ENV === 'DEV') {
+      console.log(err);
     }
 
-    public isTrustedError(error: Error){
-        if(error instanceof BaseError){
-            return error.isOperational;
-        }
-
-        return false; 
+    if (this.isTrustedError(err)) {
+      response?.status((err as APIError).httpCode).send({ status: (err as APIError).httpCode, message: err.message });
     }
+    if (!this.isTrustedError(err) && response) {
+      response
+        .status(HttpStatusCode.INTERNAL_SERVER)
+        .send({ status: HttpStatusCode.INTERNAL_SERVER, message: 'Internal Server Error' });
+      process.exit(1);
+    }
+    // Log error
+    // Send error to admin
+    // await sendMailToAdminIfCritical()
+    // Send error to Entry
+    // await sendEventsToEntry()
+  }
+
+  public isTrustedError(error: Error) {
+    if (error instanceof BaseError) {
+      return error.isOperational;
+    }
+
+    return false;
+  }
 }
 
-export enum HttpStatusCode{
-    OK = 200, 
-    BAD_REQUEST = 400, 
-    PERMISSION_DENIED = 403,
-    NOT_FOUND = 404, 
-    INTERNAL_SERVER = 500, 
+export enum HttpStatusCode {
+  OK = 200,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  PERMISSION_DENIED = 403,
+  NOT_FOUND = 404,
+  INTERNAL_SERVER = 500,
 }
-export const errorHandler = new ErrorHandler(); 
+export const errorHandler = new ErrorHandler();
 
 /* Programmer Error
    Represent unexpected bugs in poorly written code. They mean the
@@ -75,18 +93,19 @@ export const errorHandler = new ErrorHandler();
     in a wrong state and behave in an unpexted way
 */
 process.on('uncaughtException', (error: Error) => {
-    errorHandler.handleError(error); 
+  console.log('Uncaught Exception activated');
+  errorHandler.handleError(error);
 
-    if(!errorHandler.isTrustedError(error)){
-        process.exit(1);
-    }
+  if (!errorHandler.isTrustedError(error)) {
+    process.exit(1);
+  }
 });
 
 /*
     Dealing with unhandled promise rejections and execeptions
 */
 process.on('unhandledRejection', (reason: Error, promise: Promise<any>) => {
-    throw reason;
+  throw reason;
 });
 
 /*

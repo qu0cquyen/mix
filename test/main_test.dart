@@ -7,7 +7,7 @@ void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     final runner = Runner(
       extensions: [
-        appExtension(),
+        appExtension,
       ],
     );
 

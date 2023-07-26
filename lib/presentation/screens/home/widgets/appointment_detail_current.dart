@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix/styles/styles.dart';
+import 'package:mix/widgets/button.dart';
 
 class AppointmentDetailCurrent extends StatelessWidget {
   const AppointmentDetailCurrent({
@@ -80,16 +81,7 @@ class AppointmentDetailCurrent extends StatelessWidget {
           bottom: 2.0,
           left: 1.0,
           right: 1.0,
-          child: ElevatedButton(
-            style: ButtonStyle(
-              elevation: const MaterialStatePropertyAll(5.0),
-              shape: const MaterialStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: AppCorners.lgBorder,
-                ),
-              ),
-              backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
-            ),
+          child: AppButton.primaryButton(
             onPressed: onCompeletePressed,
             child: Text(
               'Completed',

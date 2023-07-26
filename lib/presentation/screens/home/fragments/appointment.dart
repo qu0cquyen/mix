@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:mix/presentation/screens/home/states/selected_date_provider.dart';
-import 'package:mix/presentation/screens/home/states/staff_chosen_provider.dart';
 import 'package:mix/presentation/screens/home/widgets/widgets.dart';
+import 'package:mix/presentation/states/home/selected_date_provider.dart';
+import 'package:mix/presentation/states/home/staff_chosen_provider.dart';
 import 'package:mix/styles/styles.dart';
 import 'package:mix/widgets/widgets.dart';
 

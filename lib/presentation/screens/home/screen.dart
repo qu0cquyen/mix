@@ -4,13 +4,13 @@ import 'package:go_router_plus/go_router_plus.dart';
 import 'package:mix/presentation/screens/comming_soon/widgets/comming_soon_widget.dart';
 import 'package:mix/presentation/screens/home/fragments/appointment.dart';
 import 'package:mix/presentation/screens/home/fragments/dash_board.dart';
-import 'package:mix/presentation/screens/home/states/bottom_provider.dart';
-import 'package:mix/presentation/screens/home/states/page_controller_provider.dart';
+import 'package:mix/presentation/states/home/bottom_provider.dart';
+import 'package:mix/presentation/states/home/page_controller_provider.dart';
 import 'package:mix/styles/styles.dart';
 
 import 'widgets/bottom_navigator.dart';
 
-class HomeScreen extends Screen implements InitialScreen {
+class HomeScreen extends Screen {
   final PageController _pageController = PageController();
 
   @override

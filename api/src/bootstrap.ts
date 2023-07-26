@@ -31,8 +31,7 @@ export default async function expressBoot() {
   // PORT
   const PORT = process.env.PORT || 8080;
 
-  app.listen(PORT, () => {
+  return app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
   });
-  return app;
 }

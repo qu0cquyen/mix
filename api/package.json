@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=DEV nodemon /src/index.ts",
     "dev": "nodemon /src/index.ts",
-    "test": "export NODE_ENV=TEST && jest --forceExit",
+    "test": "export NODE_ENV=TEST && jest --detectOpenHandles",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix"

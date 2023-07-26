@@ -5,6 +5,8 @@ import app from '../../../index';
 import { User } from 'models/user';
 import { ObjectId } from 'mongodb';
 import { CustomJWTPayload } from 'models/jwt-payload';
+import e from 'express';
+import { Server } from 'http';
 
 const mongod = MongoMemoryServer.create();
 
@@ -41,9 +43,12 @@ const mockUser: User = {
 
 const dbSpy = jest.spyOn(require('../auth_db'), 'getUserFromDb');
 
+let server: Server;
+
 describe('Test request with mongoose', () => {
   beforeAll(async () => {
-    request = supertest(await app);
+    server = await app;
+    request = supertest(server);
     await connect();
   });
 
@@ -57,6 +62,7 @@ describe('Test request with mongoose', () => {
 
   afterAll(async () => {
     await closeDatabase();
+    server.close();
   });
 
   test('POST - /auth - Require user name', async () => {

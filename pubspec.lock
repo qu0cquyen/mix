@@ -185,16 +185,18 @@ packages:
   flutter_robusta:
     dependency: "direct main"
     description:
-      path: "../../FastBoy_Project/robusta/packages/flutter_robusta"
-      relative: true
-    source: path
+      name: flutter_robusta
+      sha256: "97b647ecf00339fe5cde4bed310559564255790ea1b6e690f980aef9f6c6b229"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.2.0"
   flutter_robusta_auth:
     dependency: "direct main"
     description:
-      path: "../../FastBoy_Project/robusta/packages/flutter_robusta_auth"
-      relative: true
-    source: path
+      name: flutter_robusta_auth
+      sha256: "57fa8b5a615ebbdcf391792f02202a0d4bc5fe8dc710d77f40818ddf6fb31a75"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.1.0+1"
   flutter_test:
     dependency: "direct dev"
@@ -409,9 +411,10 @@ packages:
   robusta_runner:
     dependency: "direct main"
     description:
-      path: "../../FastBoy_Project/robusta/packages/robusta_runner"
-      relative: true
-    source: path
+      name: robusta_runner
+      sha256: "5007ebb8f36d4c2853ed766f3392b2555c7bb5cc3988c5a6376dde61b0ace90f"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.2.0+1"
   scrollable_positioned_list:
     dependency: "direct main"

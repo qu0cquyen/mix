@@ -9,7 +9,7 @@ Future<void> main() async {
   final runner = Runner(
     defineBoot: defineBoot,
     extensions: [
-      appExtension,
+      // appExtension,
     ],
   );
 

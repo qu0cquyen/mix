@@ -3,17 +3,18 @@ import express, { Express, Request, Response, NextFunction } from 'express';
 import helmet from 'helmet';
 import * as dotenv from 'dotenv';
 import { DbConnector } from './db';
+import { createClient } from '@supabase/supabase-js';
 
 export default async function expressBoot() {
   dotenv.config();
 
   const app: Express = express();
 
-  // Db Connection
-  if (process.env.NODE_ENV === 'DEV' || process.env.NODE_ENV === 'PROD') {
-    const dbConnector = DbConnector.getInstance();
-    await dbConnector.connect();
-  }
+  // Db Connection - MongoDB
+  // if (process.env.NODE_ENV === 'DEV' || process.env.NODE_ENV === 'PROD') {
+  //   const dbConnector = DbConnector.getInstance();
+  //   await dbConnector.connect();
+  // }
 
   // Parse Json
   app.use(express.urlencoded({ extended: true }));

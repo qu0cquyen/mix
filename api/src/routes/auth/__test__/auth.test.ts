@@ -5,7 +5,6 @@ import app from '../../../index';
 import { User } from 'models/user';
 import { ObjectId } from 'mongodb';
 import { CustomJWTPayload } from 'models/jwt-payload';
-import e from 'express';
 import { Server } from 'http';
 
 const mongod = MongoMemoryServer.create();
